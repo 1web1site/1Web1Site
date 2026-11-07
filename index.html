@@ -3,260 +3,182 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Christmas Gift Finder | 1web1site</title>
-<meta name="description" content="Tell us who you’re shopping for, their age, and your budget. Get gift ideas that fit, with links to buy.">
+<title>1web1site: one honest pick for everything you’re shopping for</title>
+<meta name="description" content="Skip the 40-tab research. Tell us what you need and get one tested pick, with the reason why.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--pine:#0f3b2e;--pine2:#164c3b;--red:#b3243a;--gold:#e8b84a;--cream:#fbf6ea;--ink:#1d1a16;--muted:#5b564c;
- --display:"Fraunces",Georgia,serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif}
+:root{--blue:#2438e0;--deep:#141a6b;--ink:#10121f;--paper:#f6f5ef;--sun:#ffd23f;--mist:#dfe3ff;
+  --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
 *{box-sizing:border-box}
-body{margin:0;font:400 1.05rem/1.55 var(--body);color:var(--ink);background:var(--cream)}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
-#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+html{scroll-behavior:smooth}
+body{margin:0;font:400 1.0625rem/1.6 var(--body);color:var(--ink);background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0}
+.logo{font:800 1.3rem var(--display);text-decoration:none;color:#fff}
+.top nav a{color:var(--mist);text-decoration:none;margin-left:1.4rem;font-weight:500}
+.top nav a:hover{color:#fff}
 
-.hero{background:var(--pine);color:var(--cream);padding:1.2rem 0 3.5rem;position:relative;overflow:hidden}
-.brand{font:800 1.15rem var(--display)}
-h1{font:800 clamp(2.3rem,7vw,4.6rem)/1.03 var(--display);margin:2.6rem 0 1rem;max-width:15ch;letter-spacing:-.01em}
-.lede{max-width:48ch;font-size:1.15rem;color:#e6e0cc;margin:0 0 1.6rem}
-.count{display:inline-flex;align-items:baseline;gap:.6rem;background:var(--red);border-radius:14px;padding:.6rem 1.1rem}
-.count b{font:800 2.2rem/1 var(--display);color:#fff}
-.count span{font-weight:600}
-.lights{height:14px;background:radial-gradient(circle at 10px 7px,var(--red) 5px,transparent 6px) 0 0/48px 14px,radial-gradient(circle at 34px 7px,var(--gold) 5px,transparent 6px) 0 0/48px 14px;opacity:.95}
+/* hero: the finder */
+.hero{background:var(--blue);color:#fff;padding-bottom:4.5rem}
+h1{font:800 clamp(2.4rem,7vw,4.8rem)/1.02 var(--display);letter-spacing:-.025em;margin:3rem 0 1rem;max-width:14ch;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.lede{font-size:1.2rem;max-width:46ch;color:var(--mist);margin:0 0 2rem;animation:rise .7s .12s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.ask{font:500 1rem var(--body);margin:0 0 .7rem;color:var(--mist)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;padding:0;margin:0 0 2rem;list-style:none}
+.chip{font:700 1rem var(--body);border:2px solid #fff;background:transparent;color:#fff;border-radius:999px;padding:.55rem 1.1rem;cursor:pointer;transition:background .15s,color .15s}
+.chip:hover{background:rgba(255,255,255,.16)}
+.chip[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:var(--ink)}
 
-.finder{background:#fff;border:2px solid var(--pine);border-radius:20px;margin-top:-2rem;position:relative;z-index:2;padding:1.6rem;box-shadow:0 10px 0 var(--gold)}
-.finder h2{font:800 1.6rem var(--display);margin:0 0 1rem}
-fieldset{border:0;margin:0 0 1.2rem;padding:0}
-legend{font-weight:800;margin-bottom:.5rem;padding:0}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.chip{font:600 .98rem var(--body);background:var(--cream);color:var(--ink);border:2px solid #d9d0b6;border-radius:999px;padding:.45rem 1rem;cursor:pointer;transition:background .12s,border-color .12s}
-.chip:hover{border-color:var(--pine)}
-.chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff}
-.hint{color:var(--muted);font-size:.9rem;margin:.3rem 0 0}
-.reset{font:700 .95rem var(--body);background:none;border:0;color:var(--red);cursor:pointer;text-decoration:underline;padding:0}
+.pick{background:var(--paper);color:var(--ink);border-radius:20px 20px 20px 4px;padding:1.6rem 1.7rem;max-width:640px;min-height:12rem}
+.pick.fresh{animation:pop .35s cubic-bezier(.2,.8,.3,1.2)}
+@keyframes pop{from{transform:scale(.96);opacity:.4}to{transform:none;opacity:1}}
+.pick .tag{display:inline-block;background:var(--sun);font-weight:700;font-size:.85rem;border-radius:6px;padding:.1rem .55rem;margin-bottom:.6rem}
+.pick h2{font:800 1.9rem/1.1 var(--display);margin:0 0 .5rem}
+.pick p{margin:.3rem 0 1.1rem}
+.pick .why{color:#3a3e55;font-size:.98rem}
+.btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:.75rem 1.3rem;transition:background .15s}
+.btn:hover{background:var(--deep)}
+.empty{color:#3a3e55}
 
-.results{padding:3rem 0 1rem}
-.bar{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
-.bar h2{font:800 1.8rem var(--display);margin:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
-.card{background:#fff;border:2px solid #e6dec6;border-radius:16px;padding:1.2rem;display:flex;flex-direction:column;position:relative}
-.card h3{font:800 1.15rem/1.25 var(--display);margin:.2rem 2.2rem .4rem 0}
-.card p{margin:0 0 1rem;color:var(--muted);font-size:.97rem}
-.price{display:inline-block;background:var(--red);color:#fff;font-weight:800;border-radius:6px;padding:.1rem .6rem;font-size:.92rem;align-self:flex-start}
-.match{font-size:.85rem;color:var(--pine);font-weight:700;margin-top:.3rem}
-.buy{margin-top:auto;display:block;text-align:center;background:var(--pine);color:#fff;font-weight:800;text-decoration:none;border-radius:10px;padding:.65rem 1rem}
-.buy:hover{background:var(--red)}
-.save{position:absolute;top:.8rem;right:.8rem;width:2.2rem;height:2.2rem;border-radius:50%;border:2px solid #d9d0b6;background:#fff;font-size:1.1rem;cursor:pointer;line-height:1}
-.save[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
-.empty{background:#fff;border:2px dashed #d9d0b6;border-radius:16px;padding:2rem;text-align:center}
-
-.list{background:var(--pine);color:var(--cream);padding:3rem 0;margin-top:3rem}
-.list h2{font:800 1.8rem var(--display);margin:0 0 .5rem}
-.list ul{padding-left:1.1rem}
-.list a{color:var(--gold)}
-.copy{font:800 1rem var(--body);background:var(--gold);color:var(--ink);border:0;border-radius:10px;padding:.65rem 1.2rem;cursor:pointer}
-footer{padding:2rem 0 3rem;font-size:.9rem;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* sections */
+section{padding:4rem 0}
+h2.sec{font:800 clamp(1.8rem,4vw,2.6rem)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 .5rem}
+.sub{color:#3a3e55;max-width:52ch;margin:0 0 2rem}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2rem}
+.how h3{font:800 1.25rem var(--display);margin:0 0 .3rem}
+.how p{margin:0;color:#3a3e55}
+.week{background:var(--deep);color:#fff}
+.week .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;align-items:center}
+.week p{color:var(--mist);max-width:46ch}
+.week .btn{background:var(--sun);color:var(--ink)}
+.week .btn:hover{background:#fff}
+.stamp{background:var(--blue);border-radius:50%;aspect-ratio:1;max-width:240px;display:grid;place-items:center;text-align:center;font:800 1.6rem/1.1 var(--display);padding:1.5rem;justify-self:center;transform:rotate(-6deg)}
+.news{background:var(--mist)}
+.news form{display:flex;flex-wrap:wrap;gap:.6rem;max-width:520px}
+.news input{flex:1 1 220px;font:inherit;padding:.8rem 1rem;border:2px solid var(--ink);border-radius:10px;background:#fff}
+.news button{font:700 1rem var(--body);border:0;background:var(--ink);color:#fff;border-radius:10px;padding:.8rem 1.4rem;cursor:pointer}
+.news button:hover{background:var(--blue)}
+.msg{margin-top:.8rem;font-weight:700}
+footer{padding:2.5rem 0 3rem;font-size:.92rem;color:#3a3e55}
+footer strong{color:var(--ink)}
+@media (max-width:720px){.week .grid{grid-template-columns:1fr}.stamp{max-width:170px;font-size:1.2rem}.top nav a{margin-left:.9rem}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<canvas id="snow" aria-hidden="true"></canvas>
 
-<header class="hero">
+<div class="hero">
   <div class="wrap">
-    <div class="brand">1web1site · Christmas</div>
-    <h1>Find the right gift in four clicks.</h1>
-    <p class="lede">Tell us who it’s for, how old they are, and what you want to spend. We’ll match gifts they’ll actually use.</p>
-    <div class="count"><b id="days">–</b><span>days until Christmas</span></div>
+    <header class="top">
+      <a class="logo" href="#">1web1site</a>
+      <nav><a href="#how">How it works</a><a href="#week">Pick of the week</a><a href="#join">Newsletter</a></nav>
+    </header>
+    <h1>One pick. No 40-tab research.</h1>
+    <p class="lede">Tell us what you’re shopping for. We’ll show the single product we’d buy, and why it beat the rest.</p>
+    <p class="ask" id="ask">I need help with…</p>
+    <ul class="chips" id="chips" aria-labelledby="ask"></ul>
+    <div class="pick" id="pick" aria-live="polite">
+      <p class="empty">Tap a topic above to see our pick.</p>
+    </div>
   </div>
-</header>
-<div class="lights" aria-hidden="true"></div>
+</div>
 
-<main class="wrap">
-  <section class="finder" aria-labelledby="fh">
-    <h2 id="fh">Who are you shopping for?</h2>
-    <fieldset><legend>Who is it for?</legend><div class="chips" data-key="who"></div></fieldset>
-    <fieldset><legend>How old are they?</legend><div class="chips" data-key="age"></div></fieldset>
-    <fieldset><legend>Your budget</legend><div class="chips" data-key="budget"></div></fieldset>
-    <fieldset><legend>What are they into? (pick any)</legend><div class="chips" data-key="interests"></div>
-      <p class="hint">Skip this to see popular gifts for the person and budget you chose.</p></fieldset>
-    <button class="reset" id="reset" type="button">Start over</button>
-  </section>
-
-  <section class="results" aria-live="polite">
-    <div class="bar"><h2 id="rt">Gift ideas</h2><span class="hint" id="rc"></span></div>
-    <div class="grid" id="grid"></div>
-  </section>
-</main>
-
-<section class="list" id="listSec" hidden>
+<section id="how">
   <div class="wrap">
-    <h2>Your shortlist</h2>
-    <ul id="list"></ul>
-    <button class="copy" id="copy" type="button">Copy my list</button>
-    <span id="copied" role="status" style="margin-left:.8rem"></span>
+    <h2 class="sec">How we choose</h2>
+    <p class="sub">We’d rather give you one answer you can trust than a list of ten you have to sort through.</p>
+    <div class="how">
+      <div><h3>We research the field</h3><p>Reviews, specs, and real owner feedback, compared side by side.</p></div>
+      <div><h3>We name a single winner</h3><p>One product per need, with the reason it won and who it’s not for.</p></div>
+      <div><h3>We keep it current</h3><p>Picks get updated when something better arrives or prices change.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="week" id="week">
+  <div class="wrap grid">
+    <div>
+      <h2 class="sec">Pick of the week</h2>
+      <p id="weekText">Every week, one standout product gets a full write-up: what’s great, what’s not, and who should skip it.</p>
+      <a class="btn" id="weekLink" href="#" target="_blank" rel="sponsored noopener">See this week’s pick</a>
+    </div>
+    <div class="stamp" aria-hidden="true">Tested.<br>Picked.<br>Done.</div>
+  </div>
+</section>
+
+<section class="news" id="join">
+  <div class="wrap">
+    <h2 class="sec">Get the best pick in your inbox</h2>
+    <p class="sub">One short email a week. New picks, price drops, no filler.</p>
+    <form id="signup">
+      <label for="email" class="sr" style="position:absolute;left:-9999px">Email address</label>
+      <input id="email" type="email" placeholder="you@example.com" required>
+      <button type="submit">Send me the picks</button>
+    </form>
+    <p class="msg" id="msg" role="status"></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases. Some links on this site are affiliate links, so we may earn a commission if you buy, at no extra cost to you. Prices shown are approximate and change often; check the listing for current pricing.</p>
+    <p><strong>Disclosure:</strong> Some links on this site are affiliate links. If you buy through them, we may earn a commission at no extra cost to you. It never changes which product we pick.</p>
     <p>© <span id="yr"></span> 1web1site.com</p>
   </div>
 </footer>
 
 <script>
-/* ============ EDIT HERE ============ */
-const AFFILIATE_TAG = "YOURTAG-20";   /* replace with your Amazon Associates tracking ID */
-const STORE = "https://www.amazon.com";
-/* To use a direct product link or another network, add a url field to any gift below.
-   Otherwise each gift links to an Amazon search for that exact product, with your tag. */
-/* ================================== */
+/* ===== EDIT THIS SECTION: your picks and affiliate links ===== */
+const PICKS = [
+  { topic:"Working from home", name:"Your top home-office pick", tag:"Best overall",
+    why:"Write 1–2 sentences on why this product won.", skip:"Who should skip it: add a short honest note.",
+    url:"https://example.com/your-affiliate-link-1" },
+  { topic:"Sleeping better", name:"Your top sleep pick", tag:"Best value",
+    why:"Write 1–2 sentences on why this product won.", skip:"Who should skip it: add a short honest note.",
+    url:"https://example.com/your-affiliate-link-2" },
+  { topic:"Cooking faster", name:"Your top kitchen pick", tag:"Best upgrade",
+    why:"Write 1–2 sentences on why this product won.", skip:"Who should skip it: add a short honest note.",
+    url:"https://example.com/your-affiliate-link-3" },
+  { topic:"Traveling light", name:"Your top travel pick", tag:"Best for carry-on",
+    why:"Write 1–2 sentences on why this product won.", skip:"Who should skip it: add a short honest note.",
+    url:"https://example.com/your-affiliate-link-4" }
+];
+const WEEKLY_URL = "https://example.com/your-pick-of-the-week-link";
+const SIGNUP_ACTION = ""; /* paste your Buttondown / MailerLite / Formspree form URL here */
+/* ============================================================ */
 
-const WHO=[["p","Partner"],["r","Parent or grandparent"],["k","Child"],["f","Friend"],["c","Coworker"]];
-const AGE=[["k","Kid (3–12)"],["t","Teen (13–17)"],["a","Adult (18–64)"],["s","65+"]];
-const BUDGET=[[0,25,"Under $25"],[25,50,"$25–50"],[50,100,"$50–100"],[100,250,"$100–250"],[250,9999,"$250+"]];
-const INT=[["tech","Tech"],["cozy","Cozy & home"],["cooking","Cooking"],["fitness","Fitness"],["outdoors","Outdoors"],["gaming","Games"],["reading","Reading"],["creative","Creative"],["toys","Toys"],["beauty","Beauty & self-care"]];
-
-/* [name, approx price, ages (k t a s), interests, who (p r k f c), why they’ll like it] */
-const G=[
-["LEGO Classic Large Creative Brick Box",35,"k","toys creative","k","Over 1,000 bricks for open-ended building."],
-["Play-Doh Modeling Compound 10-Pack",10,"k","creative toys","k","A classic, mess-friendly stocking stuffer."],
-["National Geographic Mega Gemstone Mining Kit",25,"kt","toys creative","kf","Dig out real gemstones and learn what they are."],
-["Hot Wheels 20-Car Gift Pack",20,"k","toys","k","Twenty cars ready for ramps and races."],
-["Squishmallows 12-inch Plush",15,"kt","toys cozy","kf","Ultra-soft, collectible, and easy to love."],
-["Nintendo Switch 2 Console",450,"kta","gaming tech","kfp","The big-ticket gift for any gamer."],
-["Exploding Kittens Card Game",20,"kta","gaming toys","kfc","Fast, funny, and easy for the whole family."],
-["Fujifilm Instax Mini 12 Instant Camera",80,"ta","creative tech","fp","Prints photos on the spot. Great for trips and parties."],
-["JBL Clip 5 Bluetooth Speaker",80,"ta","tech outdoors","fp","Tiny, waterproof, and surprisingly loud."],
-["Stanley Quencher H2.0 FlowState Tumbler 40 oz",45,"ta","cozy fitness","fpc","The tumbler everyone seems to want right now."],
-["Apple AirPods 4",130,"ta","tech","fp","Easy pairing and all-day comfort."],
-["Apple AirPods Pro 2",250,"tas","tech fitness","pfr","Noise cancelling for commutes, workouts, and flights."],
-["Sony WH-1000XM5 Wireless Headphones",300,"ta","tech","pf","Top-tier noise cancelling for music lovers."],
-["Apple Watch SE",250,"ta","fitness tech","pf","Tracks workouts, sleep, and notifications."],
-["Xbox Wireless Controller",60,"ta","gaming","fp","A reliable upgrade for console or PC players."],
-["Catan Board Game",45,"ta","gaming","fpk","A modern classic for game nights."],
-["Kindle (16 GB)",110,"tas","reading tech","fpr","Thousands of books in a pocket-sized screen."],
-["Kindle Paperwhite",160,"as","reading tech","pfr","Glare-free screen and weeks of battery life."],
-["Atomic Habits by James Clear",15,"tas","reading","fpcr","A popular, practical read on building better habits."],
-["Moleskine Classic Notebook",20,"tas","creative reading","fc","A good-looking notebook for ideas and journaling."],
-["Ember Temperature Control Smart Mug 2",130,"as","cozy tech","pfr","Keeps coffee at exactly the temperature you set."],
-["Lodge 12-Inch Cast Iron Skillet",40,"as","cooking","pfr","Lasts for decades and sears like a pro."],
-["Ninja Air Fryer",100,"as","cooking","pfr","Crispy food with little oil, and fast cleanup."],
-["Instant Pot Duo 7-in-1",90,"as","cooking","pfr","Pressure cooker, slow cooker, and rice cooker in one."],
-["Bedsure Sherpa Fleece Throw Blanket",25,"tas","cozy","fcrp","Soft, warm, and a safe bet for almost anyone."],
-["Sunbeam Heated Throw Blanket",60,"as","cozy","rp","Warmth on demand for chilly evenings."],
-["Yankee Candle Large Jar Candle",30,"as","cozy","fcrp","A long-burning scent that makes a room feel festive."],
-["Ravensburger 1000-Piece Jigsaw Puzzle",20,"tas","creative cozy","fcrp","A relaxing screen-free project for the holidays."],
-["Ghirardelli Hot Cocoa Gift Set",20,"kt as","cozy cooking","fcrpk","Easy, crowd-pleasing treat for neighbors and coworkers."],
-["Lindt Lindor Assorted Truffles Box",15,"kt as","cooking cozy","fcrpk","Smooth chocolate that works for almost everyone."],
-["LEGO Icons Flower Bouquet",60,"tas","creative cozy","pfr","Build-it-yourself flowers that never wilt."],
-["Theragun Mini Massage Gun",200,"a","fitness","pf","Portable muscle relief for runners and desk workers."],
-["Hydro Flask 32 oz Wide Mouth Bottle",45,"tas","fitness outdoors","fpc","Keeps drinks cold all day and survives drops."],
-["Gaiam Essentials Yoga Mat",30,"ta","fitness","fpc","Comfortable grip for yoga, stretching, and home workouts."],
-["Leatherman Wingman Multi-Tool",70,"as","outdoors","pfr","Pliers, knife, and screwdrivers in one pocket tool."],
-["Stanley Classic Legendary Vacuum Bottle",45,"as","outdoors cozy","pfr","Keeps coffee hot for hours on trails or job sites."],
-["Yeti Rambler 20 oz Tumbler",35,"as","cozy outdoors","fcrp","Tough insulated tumbler for coffee or cold drinks."],
-["Black Diamond Spot 400 Headlamp",50,"ta","outdoors","fpr","Bright hands-free light for camping and power outages."],
-["Apple AirTag 4-Pack",80,"as","tech","pfr","Helps find keys, bags, and luggage."],
-["Amazon Echo Dot",50,"as","tech","fpr","Music, timers, and smart-home control by voice."],
-["Burt’s Bees Classics Gift Set",15,"tas","beauty","fcrp","Lip balm and skin care basics in a gift-ready set."],
-["Revlon One-Step Hair Dryer and Volumizer",60,"ta","beauty","pf","Dries and styles in one step."],
-["Dyson Supersonic Hair Dryer",430,"a","beauty","pf","The splurge-worthy pick for fast, gentle drying."]
-].map(a=>({name:a[0],price:a[1],ages:a[2].replace(/ /g,""),ints:a[3].split(" "),who:a[4],why:a[5]}));
-
-const S={who:null,age:null,budget:null,interests:new Set()};
-let saved=[];try{saved=JSON.parse(localStorage.getItem("giftlist")||"[]")}catch(e){}
-const $=id=>document.getElementById(id);
-const link=g=>g.url||`${STORE}/s?k=${encodeURIComponent(g.name)}&tag=${encodeURIComponent(AFFILIATE_TAG)}`;
-
-function chips(key,items,multi){
-  const box=document.querySelector(`[data-key="${key}"]`);
-  items.forEach(it=>{
-    const b=document.createElement("button");b.type="button";b.className="chip";b.setAttribute("aria-pressed","false");
-    const id=key==="budget"?it[2]:it[0];b.textContent=key==="budget"?it[2]:it[1];b.dataset.id=id;
-    b.onclick=()=>{
-      if(multi){S.interests.has(id)?S.interests.delete(id):S.interests.add(id)}
-      else if(key==="budget"){S.budget=S.budget&&S.budget[2]===id?null:it}
-      else{S[key]=S[key]===id?null:id}
-      sync();render();
-    };box.appendChild(b);
-  });
-}
-function sync(){
-  document.querySelectorAll(".chip").forEach(b=>{
-    const k=b.parentNode.dataset.key,id=b.dataset.id;
-    const on=k==="interests"?S.interests.has(id):k==="budget"?(S.budget&&S.budget[2]===id):S[k]===id;
-    b.setAttribute("aria-pressed",on?"true":"false");
-  });
-}
-function pick(){
-  const age=S.age||(S.who==="k"?"k":null);
-  const out=[];
-  G.forEach(g=>{
-    if(age&&!g.ages.includes(age))return;
-    if(S.budget&&(g.price<S.budget[0]||g.price>S.budget[1]))return;
-    let score=0,hits=[];
-    S.interests.forEach(i=>{if(g.ints.includes(i)){score+=3;hits.push(i)}});
-    if(S.who){g.who.includes(S.who)?score+=2:score-=4}
-    if(S.interests.size&&!hits.length)score-=2;
-    if(score<-1)return;
-    out.push({g,score,hits});
-  });
-  out.sort((a,b)=>b.score-a.score||b.g.price-a.g.price);
-  return out.slice(0,12);
-}
-function render(){
-  const res=pick(),grid=$("grid");grid.innerHTML="";
-  const anyFilter=S.who||S.age||S.budget||S.interests.size;
-  $("rt").textContent=anyFilter?"Gifts we’d pick for you":"Popular gifts to start with";
-  $("rc").textContent=res.length?`${res.length} ideas`:"";
-  if(!res.length){grid.innerHTML='<div class="empty"><strong>No exact matches.</strong><p>Try a wider budget or fewer interests.</p></div>';return}
-  res.forEach(({g,hits})=>{
-    const c=document.createElement("article");c.className="card";
-    const on=saved.includes(g.name);
-    c.innerHTML=`<button class="save" type="button" aria-pressed="${on}" aria-label="Save ${g.name} to my shortlist">${on?"♥":"♡"}</button>
-      <span class="price">about $${g.price}</span><h3></h3>${hits.length?`<div class="match">Matches: ${hits.map(h=>INT.find(i=>i[0]===h)[1]).join(", ")}</div>`:""}<p style="margin-top:.5rem"></p>
-      <a class="buy" target="_blank" rel="sponsored noopener noreferrer">See it on Amazon</a>`;
-    c.querySelector("h3").textContent=g.name;c.querySelector("p").textContent=g.why;c.querySelector(".buy").href=link(g);
-    c.querySelector(".save").onclick=()=>{saved=saved.includes(g.name)?saved.filter(n=>n!==g.name):[...saved,g.name];
-      try{localStorage.setItem("giftlist",JSON.stringify(saved))}catch(e){}render();renderList()};
-    grid.appendChild(c);
-  });
-}
-function renderList(){
-  $("listSec").hidden=!saved.length;const ul=$("list");ul.innerHTML="";
-  saved.forEach(n=>{const g=G.find(x=>x.name===n);if(!g)return;
-    const li=document.createElement("li"),a=document.createElement("a");
-    a.href=link(g);a.target="_blank";a.rel="sponsored noopener noreferrer";a.textContent=g.name;
-    li.append(a," (about $"+g.price+")");ul.appendChild(li)});
-}
-$("copy").onclick=async()=>{
-  const txt=saved.map(n=>{const g=G.find(x=>x.name===n);return g?`${g.name} - ${link(g)}`:""}).join("\n");
-  try{await navigator.clipboard.writeText(txt);$("copied").textContent="Copied!"}catch(e){$("copied").textContent="Copy failed. Select the list and copy it manually."}
-};
-$("reset").onclick=()=>{S.who=S.age=S.budget=null;S.interests.clear();sync();render()};
-
-chips("who",WHO);chips("age",AGE);chips("budget",BUDGET);chips("interests",INT,true);
-render();renderList();
-$("yr").textContent=new Date().getFullYear();
-(function(){const n=new Date();let x=new Date(n.getFullYear(),11,25);
-  if(n>new Date(n.getFullYear(),11,25,23,59))x=new Date(n.getFullYear()+1,11,25);
-  const d=Math.ceil((x-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/864e5);
-  $("days").textContent=d===0?"0":d;if(d===0)document.querySelector(".count span").textContent="Merry Christmas!"})();
-
-/* gentle snowfall */
-(function(){
-  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-  const cv=$("snow"),cx=cv.getContext("2d");let w,h,f=[];
-  const size=()=>{w=cv.width=innerWidth;h=cv.height=innerHeight};size();addEventListener("resize",size);
-  for(let i=0;i<70;i++)f.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2.5+1,s:Math.random()*.8+.3,d:Math.random()*6});
-  (function loop(){cx.clearRect(0,0,w,h);cx.fillStyle="rgba(255,255,255,.8)";
-    f.forEach(p=>{p.y+=p.s;p.d+=.01;p.x+=Math.sin(p.d)*.4;if(p.y>h){p.y=-5;p.x=Math.random()*w}
-      cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.3);cx.fill()});requestAnimationFrame(loop)})();
-})();
+const chips = document.getElementById("chips"), pick = document.getElementById("pick");
+PICKS.forEach((p, i) => {
+  const li = document.createElement("li"), b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.textContent = p.topic; b.setAttribute("aria-pressed", "false");
+  b.onclick = () => {
+    chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", "false"));
+    b.setAttribute("aria-pressed", "true");
+    pick.innerHTML = "";
+    const tag = Object.assign(document.createElement("span"), {className:"tag", textContent:p.tag});
+    const h = Object.assign(document.createElement("h2"), {textContent:p.name});
+    const why = Object.assign(document.createElement("p"), {textContent:p.why});
+    const skip = Object.assign(document.createElement("p"), {className:"why", textContent:p.skip});
+    const a = Object.assign(document.createElement("a"), {className:"btn", href:p.url, target:"_blank", rel:"sponsored noopener", textContent:"Check the price"});
+    pick.append(tag, h, why, skip, a);
+    pick.classList.remove("fresh"); void pick.offsetWidth; pick.classList.add("fresh");
+  };
+  li.appendChild(b); chips.appendChild(li);
+});
+document.getElementById("weekLink").href = WEEKLY_URL;
+document.getElementById("yr").textContent = new Date().getFullYear();
+document.getElementById("signup").addEventListener("submit", async e => {
+  e.preventDefault();
+  const msg = document.getElementById("msg"), email = document.getElementById("email").value;
+  if (!SIGNUP_ACTION) { msg.textContent = "Signup isn’t connected yet. Add your form URL in index.html."; return; }
+  try {
+    await fetch(SIGNUP_ACTION, {method:"POST", mode:"no-cors", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:"email="+encodeURIComponent(email)});
+    msg.textContent = "You’re in. Check your inbox to confirm."; e.target.reset();
+  } catch (err) { msg.textContent = "Something went wrong. Please try again."; }
+});
 </script>
 </body>
 </html>
